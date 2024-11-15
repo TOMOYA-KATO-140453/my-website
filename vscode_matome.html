@@ -1,0 +1,585 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>vscode_matome.md</title>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+
+<style>
+/* https://github.com/microsoft/vscode/blob/master/extensions/markdown-language-features/media/markdown.css */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+body {
+	font-family: var(--vscode-markdown-font-family, -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif);
+	font-size: var(--vscode-markdown-font-size, 14px);
+	padding: 0 26px;
+	line-height: var(--vscode-markdown-line-height, 22px);
+	word-wrap: break-word;
+}
+
+#code-csp-warning {
+	position: fixed;
+	top: 0;
+	right: 0;
+	color: white;
+	margin: 16px;
+	text-align: center;
+	font-size: 12px;
+	font-family: sans-serif;
+	background-color:#444444;
+	cursor: pointer;
+	padding: 6px;
+	box-shadow: 1px 1px 1px rgba(0,0,0,.25);
+}
+
+#code-csp-warning:hover {
+	text-decoration: none;
+	background-color:#007acc;
+	box-shadow: 2px 2px 2px rgba(0,0,0,.25);
+}
+
+body.scrollBeyondLastLine {
+	margin-bottom: calc(100vh - 22px);
+}
+
+body.showEditorSelection .code-line {
+	position: relative;
+}
+
+body.showEditorSelection .code-active-line:before,
+body.showEditorSelection .code-line:hover:before {
+	content: "";
+	display: block;
+	position: absolute;
+	top: 0;
+	left: -12px;
+	height: 100%;
+}
+
+body.showEditorSelection li.code-active-line:before,
+body.showEditorSelection li.code-line:hover:before {
+	left: -30px;
+}
+
+.vscode-light.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.15);
+}
+
+.vscode-light.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.40);
+}
+
+.vscode-light.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-dark.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.4);
+}
+
+.vscode-dark.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.60);
+}
+
+.vscode-dark.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-high-contrast.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 160, 0, 0.7);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 160, 0, 1);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+img {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+a {
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+a:focus,
+input:focus,
+select:focus,
+textarea:focus {
+	outline: 1px solid -webkit-focus-ring-color;
+	outline-offset: -1px;
+}
+
+hr {
+	border: 0;
+	height: 2px;
+	border-bottom: 2px solid;
+}
+
+h1 {
+	padding-bottom: 0.3em;
+	line-height: 1.2;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+}
+
+h1, h2, h3 {
+	font-weight: normal;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+table > thead > tr > th {
+	text-align: left;
+	border-bottom: 1px solid;
+}
+
+table > thead > tr > th,
+table > thead > tr > td,
+table > tbody > tr > th,
+table > tbody > tr > td {
+	padding: 5px 10px;
+}
+
+table > tbody > tr + tr > td {
+	border-top: 1px solid;
+}
+
+blockquote {
+	margin: 0 7px 0 5px;
+	padding: 0 16px 0 10px;
+	border-left-width: 5px;
+	border-left-style: solid;
+}
+
+code {
+	font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback";
+	font-size: 1em;
+	line-height: 1.357em;
+}
+
+body.wordWrap pre {
+	white-space: pre-wrap;
+}
+
+pre:not(.hljs),
+pre.hljs code > div {
+	padding: 16px;
+	border-radius: 3px;
+	overflow: auto;
+}
+
+pre code {
+	color: var(--vscode-editor-foreground);
+	tab-size: 4;
+}
+
+/** Theming */
+
+.vscode-light pre {
+	background-color: rgba(220, 220, 220, 0.4);
+}
+
+.vscode-dark pre {
+	background-color: rgba(10, 10, 10, 0.4);
+}
+
+.vscode-high-contrast pre {
+	background-color: rgb(0, 0, 0);
+}
+
+.vscode-high-contrast h1 {
+	border-color: rgb(0, 0, 0);
+}
+
+.vscode-light table > thead > tr > th {
+	border-color: rgba(0, 0, 0, 0.69);
+}
+
+.vscode-dark table > thead > tr > th {
+	border-color: rgba(255, 255, 255, 0.69);
+}
+
+.vscode-light h1,
+.vscode-light hr,
+.vscode-light table > tbody > tr + tr > td {
+	border-color: rgba(0, 0, 0, 0.18);
+}
+
+.vscode-dark h1,
+.vscode-dark hr,
+.vscode-dark table > tbody > tr + tr > td {
+	border-color: rgba(255, 255, 255, 0.18);
+}
+
+</style>
+
+<style>
+/* Tomorrow Theme */
+/* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
+/* Original theme - https://github.com/chriskempson/tomorrow-theme */
+
+/* Tomorrow Comment */
+.hljs-comment,
+.hljs-quote {
+	color: #8e908c;
+}
+
+/* Tomorrow Red */
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag,
+.hljs-name,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-regexp,
+.hljs-deletion {
+	color: #c82829;
+}
+
+/* Tomorrow Orange */
+.hljs-number,
+.hljs-built_in,
+.hljs-builtin-name,
+.hljs-literal,
+.hljs-type,
+.hljs-params,
+.hljs-meta,
+.hljs-link {
+	color: #f5871f;
+}
+
+/* Tomorrow Yellow */
+.hljs-attribute {
+	color: #eab700;
+}
+
+/* Tomorrow Green */
+.hljs-string,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-addition {
+	color: #718c00;
+}
+
+/* Tomorrow Blue */
+.hljs-title,
+.hljs-section {
+	color: #4271ae;
+}
+
+/* Tomorrow Purple */
+.hljs-keyword,
+.hljs-selector-tag {
+	color: #8959a8;
+}
+
+.hljs {
+	display: block;
+	overflow-x: auto;
+	color: #4d4d4c;
+	padding: 0.5em;
+}
+
+.hljs-emphasis {
+	font-style: italic;
+}
+
+.hljs-strong {
+	font-weight: bold;
+}
+</style>
+
+<style>
+/*
+ * Markdown PDF CSS
+ */
+
+ body {
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif, "Meiryo";
+	padding: 0 12px;
+}
+
+pre {
+	background-color: #f8f8f8;
+	border: 1px solid #cccccc;
+	border-radius: 3px;
+	overflow-x: auto;
+	white-space: pre-wrap;
+	overflow-wrap: break-word;
+}
+
+pre:not(.hljs) {
+	padding: 23px;
+	line-height: 19px;
+}
+
+blockquote {
+	background: rgba(127, 127, 127, 0.1);
+	border-color: rgba(0, 122, 204, 0.5);
+}
+
+.emoji {
+	height: 1.4em;
+}
+
+code {
+	font-size: 14px;
+	line-height: 19px;
+}
+
+/* for inline code */
+:not(pre):not(.hljs) > code {
+	color: #C9AE75; /* Change the old color so it seems less like an error */
+	font-size: inherit;
+}
+
+/* Page Break : use <div class="page"/> to insert page break
+-------------------------------------------------------- */
+.page {
+	page-break-after: always;
+}
+
+</style>
+
+<script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+</head>
+<body>
+  <script>
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: document.body.classList.contains('vscode-dark') || document.body.classList.contains('vscode-high-contrast')
+          ? 'dark'
+          : 'default'
+    });
+  </script>
+<!-- chrome-extension://efaidnbmnnnibpcajpcglclefindmkaj/https://code.visualstudio.com/shortcuts/keyboard-shortcuts-windows.pdf -->
+<!-- VS Code -->
+<h1 style="color: white; background-color: #8049A7; padding: 10px; margin: 0px; text-align:left; border-left: 5px solid white;">VS Code</h1>
+<!-- コメント -->
+<span style="font-size: 1.5em;">VS codeのノウハウについてまとめる</span>
+<!-- VS Codeショートカットキー覧 -->
+<h2 style="color: white; background-color: #00A9E0; padding: 10px; margin-top: 30px; text-align:left">VS codeショートカットキー覧</h2>
+<p><span style="font-size: 1.5em;">いろいろあって覚えるの大変なので関連ありそうなものを随時記載していく</span></p>
+<!-- css -->
+<style>
+  .responsive-table {
+    margin: auto;
+    width: 100%;
+    max-width: 100%;
+    border-collapse: collapse;
+    overflow-x: auto;
+    color: black ;
+  }
+
+  .responsive-table th, .responsive-table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: center;
+  }
+
+  .responsive-table th {
+    background-color: #00A9E0;
+    color: white;
+  }
+   .responsive-table td {
+    background-color:white;
+   }
+</style>
+<!-- html 表 -->
+<div class="responsive-table">
+  <table>
+    <tr>
+      <th>ショートカットキー</th>
+      <th>説明</th>
+    </tr>
+    <tr>
+      <td>Alt + 矢印</td>
+      <td>行の移動</td>
+    </tr>
+    <tr>
+      <td>Alt + 数字</td>
+      <td>ページ移動・タブ切替</td>
+    </tr>
+    <tr>
+      <td>Ctrl + P</td>
+      <td>ファイル名検索</td>
+    </tr>
+    <tr>
+      <td>Ctrl + Shift + P</td>
+      <td>コマンドパレットを開く</td>
+    </tr>
+    <tr>
+      <td>Ctrl + W</td>
+      <td>現在のウィンドウを閉じる</td>
+    </tr>
+    <tr>
+      <td>Ctrl + Shift + N</td>
+      <td>新しいウィンドウを開く</td>
+    </tr>
+    <tr>
+      <td>Ctrl + K, Ctrl + S</td>
+      <td>Copilot提案を別枠で表示する※加藤設定</td>
+    </tr>
+    <tr>
+      <td>Ctrl + ,</td>
+      <td>設定を開く</td>
+    </tr>
+    <tr>
+      <td>Ctrl + J</td>
+      <td>ターミナルを開く/閉じる</td>
+    </tr>
+    <tr>
+      <td>Ctrl + Enter</td>
+      <td>現在の行の下に改行を追加</td>
+    </tr>
+    <tr>
+      <td>Ctrl + Shift + Enter</td>
+      <td>現在の行の上に改行を追加</td>
+    </tr>
+    <tr>
+      <td>Ctrl + K → V </td>
+      <td>md プレビュー</td>
+    </tr>
+  </table>
+</div>
+<!-- VS Codeショートカットキー覧 -->
+<h2 style="color: white; background-color: #00A9E0; padding: 10px; margin-top: 30px; text-align:left">Terminal ショートカットキー覧</h2>
+<!-- html 表 -->
+<div class="responsive-table">
+  <table>
+    <tr>
+      <th>ショートカットキー</th>
+      <th>説明</th>
+    </tr>
+    <tr>
+      <td>mkdir ディレクトリ名</td>
+      <td>新しいディレクトリ（フォルダ）を作成する</td>
+    </tr>
+    <tr>
+      <td>cd ディレクトリ名A</td>
+      <td>カレントディレクトリの `ディレクトリ名A` に移動</td>
+    </tr>
+    <tr>
+      <td>cd ..</td>
+      <td>一つ上のディレクトリ（親ディレクトリ）に移動する</td>
+    </tr>
+    <tr>
+      <td>cd ..\..</td>
+      <td>ふたつ上のディレクトリ（親ディレクトリ）に移動する</td>
+    </tr>
+    cd .\09.flask_react_bootstrap\
+    <tr>
+      <td>cd .\一つ下の階層のディレクトリ名\</td>
+      <td>一つ下の階層の指定したディレクトリ名に移動</td>
+    </tr>
+    <tr>
+      <td>cd C:\Users\140453\Documents</td>
+      <td>絶対Pathで移動</td>
+    </tr>
+    <tr>
+      <td>.\venv\Scripts\Activate</td>
+      <td>pythonの仮想環境を起動</td>
+    </tr>
+    <tr>
+      <td>deactivate</td>
+      <td>pythonの仮想環境を終了</td>
+    </tr>
+    <tr>
+      <td>npm start</td>
+      <td>開発サーバーを起動してReactアプリケーションを実行</td>
+    </tr>
+    <tr>
+      <td>Ctrl + C</td>
+      <td>実行中のサーバープロセスが停止</td>
+    </tr>
+  </table>
+</div>
+<h2 style="color: white; background-color: #00A9E0; padding: 10px; margin-top: 30px; text-align:left">色</h2>
+<h3 id="tel%E3%81%AE%E3%83%96%E3%83%A9%E3%83%B3%E3%83%89%E3%82%AB%E3%83%A9%E3%83%BC">TELのブランドカラー</h3>
+<!-- css -->
+<style>
+  .color-table {
+    border-collapse: collapse;
+    width: 100%;
+  }
+  .color-table th, .color-table td {
+    border: 1px solid black;
+    text-align: center;
+    color: black;
+  }
+  .color-table th {
+    font-weight: bold;
+  }
+  .color-table td {
+    background-color: white;
+  }
+  .cyan { background-color: cyan; }
+  .gray { background-color: gray; }
+  .lightgray { background-color: lightgray; }
+  .white { background-color: white; }
+  .magenta { background-color: magenta; }
+  .purple { background-color: purple; }
+  .turquoise { background-color: turquoise; }
+  .green { background-color: green; }
+  .yellow { background-color: yellow; }
+  .orange { background-color: orange; }
+</style>
+<!-- html 表 -->
+<table class="color-table">
+  <tr>
+    <th style="background-color:black;color: white">色名</th>
+    <th class="cyan">cyan</th>
+    <th class="gray">gray</th>
+    <th class="lightgray">light_gray</th>
+    <th class="white">white</th>
+    <th class="magenta">magenta</th>
+    <th class="purple">purple</th>
+    <th class="turquoise">turquoise</th>
+    <th class="green">green</th>
+    <th class="yellow">yellow</th>
+    <th class="orange">orange</th>
+  </tr>
+  <tr>
+    <td style="background-color:black;color: white">RGB</td>
+    <td>RGB(0, 169, 224)</td>
+    <td>RGB(45, 45, 45)</td>
+    <td>RGB(244, 244, 244)</td>
+    <td>RGB(255, 255, 255)</td>
+    <td>RGB(218, 24, 132)</td>
+    <td>RGB(128, 49, 167)</td>
+    <td>RGB(0, 178, 169)</td>
+    <td>RGB(120, 190, 32)</td>
+    <td>RGB(238, 220, 0)</td>
+    <td>RGB(255, 106, 19)</td>
+  </tr>
+  <tr>
+    <td style="background-color:black;color: white">16進数</td>
+    <td>#00A9E0</td>
+    <td>#2D2D2D</td>
+    <td>#F4F4F4</td>
+    <td>#FFFFFF</td>
+    <td>#DA1884</td>
+    <td>#8049A7</td>
+    <td>#00B2A9</td>
+    <td>#78BE20</td>
+    <td>#EEDC00</td>
+    <td>#FF6A13</td>
+  </tr>
+</table>
+<h2 style="color: white; background-color: #00A9E0; padding: 10px; margin-top: 30px; text-align:left">contentsを追加する</h2>
+
+</body>
+</html>
